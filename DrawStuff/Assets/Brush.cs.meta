@@ -5,7 +5,9 @@ licenseType: Free
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - trailPrefab: {fileID: 1125239283301720, guid: 4f73bcd58c866f04eb90fc1cc88fbed5,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
