@@ -8,10 +8,20 @@ public class Brush : MonoBehaviour {
 	private Vector3 startPos;
 	private Plane objPlane;
 	private bool hasMoved;
+	private TrailRenderer tr;
 	
 	// Use this for initialization
 	void Start () {
-		objPlane = new Plane(Camera.main.transform.forward * -1, this.transform.position);
+		objPlane = new Plane(Camera.main.transform.forward * -1, transform.position);
+		
+	}
+	
+	public void changeColor()	{
+		thisTrail.GetComponent<TrailRenderer>().material.SetColor("_Color", Color.green);
+	}
+	
+	public void deleteTrail()	{
+		Destroy(thisTrail);
 	}
 	
 	// Update is called once per frame
@@ -23,6 +33,7 @@ public class Brush : MonoBehaviour {
              if(objPlane.Raycast(mRay, out rayDistance))
 				{startPos = mRay.GetPoint(rayDistance);}
 			thisTrail = (GameObject)Instantiate(trailPrefab, startPos, Quaternion.identity);
+			thisTrail.GetComponent<TrailRenderer>().material.SetColor("_Color", Color.blue);
 			hasMoved=false;
         } else if(((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved) || Input.GetMouseButton(0)))	{
 				
@@ -40,3 +51,4 @@ public class Brush : MonoBehaviour {
 		}
 	}
 }
+//You DID drink your Ovaltine, didn't you?
