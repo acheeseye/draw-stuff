@@ -4,6 +4,10 @@
 - **Description: draw-stuff is aimed to be a touch-driven application that allows the user to draw lines on their mobile devices**  
 - **Supports: Windows tablet, Andriod phone**
 
+## Version 4
+- Working size slider.
+- Additional UI (?).
+
 ## Version 3
 - Erase toggle added and erases correctly (to a certain degree).
 - Delete button is now an undo button and undos the last trail/line created.
