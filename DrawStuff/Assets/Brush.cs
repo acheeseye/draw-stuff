@@ -28,22 +28,47 @@ public class Brush : MonoBehaviour {
 	}
 	
 	public void changeColor()	{
+		ColorBlock cb = colorSlider.colors;
 		if(colorSlider.value == 0)	{
 			color=Color.white;
+			cb.normalColor = color;
+			cb.highlightedColor = color;
+			colorSlider.colors=cb;
 		} else if(colorSlider.value == 1)	{
 			color=Color.red;
+			cb.normalColor = color;
+			cb.highlightedColor = color;
+			colorSlider.colors=cb;
 		} else if(colorSlider.value == 2)	{
 			color=Color.magenta;
+			cb.normalColor = color;
+			cb.highlightedColor = color;
+			colorSlider.colors=cb;
 		} else if(colorSlider.value == 3)	{
 			color=Color.blue;
+			cb.normalColor = color;
+			cb.highlightedColor = color;
+			colorSlider.colors=cb;
 		} else if(colorSlider.value == 4) {
 			color=Color.cyan;
+			cb.normalColor = color;
+			cb.highlightedColor = color;
+			colorSlider.colors=cb;
 		} else if(colorSlider.value == 5)	{
 			color=Color.green;
+			cb.normalColor = color;
+			cb.highlightedColor = color;
+			colorSlider.colors=cb;
 		} else if(colorSlider.value == 6)	{
 			color=Color.yellow;
+			cb.normalColor = color;
+			cb.highlightedColor = color;
+			colorSlider.colors=cb;
 		} else if(colorSlider.value == 7)	{
 			color=Color.grey;
+			cb.normalColor = color;
+			cb.highlightedColor = color;
+			colorSlider.colors=cb;
 		}
 	}
 	
