@@ -651,10 +651,10 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 0.5019608}
+    m_ColorMultiplier: 1.5
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
@@ -781,6 +781,7 @@ GameObject:
   - component: {fileID: 674415948}
   - component: {fileID: 674415947}
   - component: {fileID: 674415946}
+  - component: {fileID: 674415949}
   m_Layer: 5
   m_Name: ColorSwitch
   m_TagString: Untagged
@@ -826,11 +827,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.72156864, g: 0.854902, b: 0.9568628, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 5
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 0.5019608}
+    m_ColorMultiplier: 1.5
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
@@ -892,6 +893,19 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 674415944}
+--- !u!114 &674415949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 674415944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38d28fb756b7f4248bc714eda821fce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ColorSwitch: {fileID: 674415946}
+  colorSlider: {fileID: 397559736}
 --- !u!1 &780798433
 GameObject:
   m_ObjectHideFlags: 0
@@ -1182,14 +1196,25 @@ MonoBehaviour:
   m_HandleRect: {fileID: 780798434}
   m_Direction: 3
   m_MinValue: 0
-  m_MaxValue: 7
+  m_MaxValue: 20
   m_WholeNumbers: 1
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1904067920}
-        m_MethodName: 
+        m_MethodName: changeSize
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1389071432}
+        m_MethodName: changeText
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1246,6 +1271,7 @@ GameObject:
   - component: {fileID: 1389071431}
   - component: {fileID: 1389071430}
   - component: {fileID: 1389071429}
+  - component: {fileID: 1389071432}
   m_Layer: 5
   m_Name: SizeSwitch
   m_TagString: Untagged
@@ -1357,6 +1383,19 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1389071427}
+--- !u!114 &1389071432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1389071427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd4e669fe3af1f34b90a473aef1641c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SizeSwitch: {fileID: 1389071429}
+  sizeSlider: {fileID: 1231767745}
 --- !u!1 &1561754243
 GameObject:
   m_ObjectHideFlags: 0
@@ -1964,6 +2003,7 @@ MonoBehaviour:
   trailPrefab: {fileID: 1125239283301720, guid: 4f73bcd58c866f04eb90fc1cc88fbed5,
     type: 2}
   colorSlider: {fileID: 397559736}
+  sizeSlider: {fileID: 1231767745}
 --- !u!4 &1904067921
 Transform:
   m_ObjectHideFlags: 0

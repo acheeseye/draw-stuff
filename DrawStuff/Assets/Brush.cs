@@ -6,23 +6,25 @@ using UnityEngine;
 public class Brush : MonoBehaviour {
 	public GameObject trailPrefab;
 	public Slider colorSlider;
+	public Slider sizeSlider;
 	private List<GameObject> trails = new List<GameObject>();
-	private GameObject thisTrail;
 	private int count=0;
 	private Vector3 startPos;
 	private Plane objPlane;
-	private bool hasMoved;
 	private TrailRenderer tr;
     private GameObject eraseToggle;
     private float dz;
     private bool eraseMode;
 	private Color color = Color.white;
+	private float currentWidth;
+	private float lastWidth;
 	
 	// Use this for initialization
 	void Start () {
         eraseToggle = GameObject.Find("Canvas/Erase");             // looks for Erase toggle
         eraseToggle.GetComponent<Toggle>().isOn = false;    // default erase toggle is off
 		objPlane = new Plane(Camera.main.transform.forward * -1, transform.position);
+		currentWidth=.05f;
         eraseMode = false;
         dz = 0;
 	}
@@ -34,6 +36,7 @@ public class Brush : MonoBehaviour {
 			cb.normalColor = color;
 			cb.highlightedColor = color;
 			colorSlider.colors=cb;
+			Debug.Log("Color is white"+3.0f);
 		} else if(colorSlider.value == 1)	{
 			color=Color.red;
 			cb.normalColor = color;
@@ -70,6 +73,15 @@ public class Brush : MonoBehaviour {
 			cb.highlightedColor = color;
 			colorSlider.colors=cb;
 		}
+	}
+	
+	public void changeSize()	{
+		
+		currentWidth+=sizeSlider.value/20-lastWidth;
+		Debug.Log("Size of startWidth is: "+currentWidth);
+		if(currentWidth == 0)
+			currentWidth=.05f;
+		lastWidth = currentWidth;
 	}
 	
 	public void deleteTrail()	{
@@ -112,6 +124,8 @@ public class Brush : MonoBehaviour {
             trails.Add((GameObject)Instantiate(trailPrefab, startPos, Quaternion.identity));
 			count++;
             trails[count-1].transform.position = v3;
+			trails[count-1].GetComponent<TrailRenderer>().startWidth = currentWidth;
+			trails[count-1].GetComponent<TrailRenderer>().endWidth = currentWidth;
             if (eraseMode)
             {
                 trails[count-1].GetComponent<TrailRenderer>().material.SetColor("_Color", Color.clear);
@@ -120,7 +134,6 @@ public class Brush : MonoBehaviour {
             {
                 trails[count-1].GetComponent<TrailRenderer>().material.SetColor("_Color", color);
             }
-            hasMoved = false;
 
         // when moved after touched
         } else if(((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved) || Input.GetMouseButton(0)))
@@ -135,7 +148,6 @@ public class Brush : MonoBehaviour {
                 v3.z = -dz;
                 trails[count-1].transform.position = v3;
             }
-            hasMoved = false;
 		}  else if((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended) || Input.GetMouseButtonUp(0))	{
 				
 			if(Vector3.Distance(trails[count-1].transform.position, startPos) == 0)
